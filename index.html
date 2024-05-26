@@ -19,6 +19,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- CSS Link-->
     <link rel="stylesheet" href="css/main.css">
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- JavaScript Link-->
     <script src="js/global.js" defer></script>
     <script src="js/index.js" type="module" defer></script>
@@ -27,12 +29,12 @@
     <!-- HEADER-->
     <header class="header">
         <a href="index.html" class="logo">
-            <img class="logo_img" src="img/logo-kinova-fondo-negro.png" alt="Kinova home">
+            <img class="logo_img" src="img/logo-kinova-sin-fondo.png" alt="Kinova home">
         </a>
     
         <section class="search_box" search_box>
             <article class="search_wrapper" search_wrapper>
-                <input type="text" name="search" aria-label="search movies" placeholder="search any movies..." class="search_field" autocomplete="off" search_field>
+                <input type="text" name="search" aria-label="search movies" placeholder="Buscador..." class="search_field" autocomplete="off" search_field>
                 <img class="leading_icon" src="img/search.png" alt="search">
             </article>
             <button class="search_btn" search_toggler>
@@ -53,13 +55,9 @@
 
     <main>
         <!-- SIDEBAR-->
-
         <nav class="sidebar" sidebar></nav>
         <article class="overlay" overlay menu_toggler></article>
-
-
         <section class="container" page_content></section>
     </main>
-
 </body>
 </html>
