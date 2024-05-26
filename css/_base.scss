@@ -1,0 +1,49 @@
+//CUSTOM PROPERTY
+    //COLORS
+    $background: hsla(220, 17%, 7%, 1);
+    $bannerBackground: hsla(250, 6%, 20%, 1);
+    $whiteAlpha20: hsla(0, 0%, 100%, 0.2);
+    $onBackground: hsla(220, 100%, 95%, 1);
+    $onSurface: hsla(250, 100%, 95%, 1);
+    $onSurfaceVariant: hsla(250, 1%, 44%, 1);
+    $primary: hsla(349, 100%, 43%, 1);
+    $primaryVariant: hsla(349, 69%, 51%, 1);
+    $ratingColor: hsla(44, 100%, 49%, 1);
+    $surface: hsla(250, 13%, 11%, 1);
+    $textColor: hsla(250, 2%, 59%, 1);
+    $white: hsla(0, 0%, 100%, 1);
+
+    //GRADIENT COLORS
+    $bannerOverlay: 90deg, hsl(220, 17%, 7%) 0%, hsla(220, 17%, 7%, 0) 100%;
+    $bottomOverlay: 180deg, hsla(250, 13%, 11%, 0), hsla(250, 13%, 11%, 1);
+
+    //TYPOGRAFHY
+    //Font Family
+    $ffRubik: 'DM Sans', sans-serif;
+    //Font Size
+    $fsHeading: 4rem;
+    $fsTitle-lg: 2.6rem;
+    $fsTitle: 2rem;
+    $fsBody: 1.8rem;
+    $fsButton: 1.5rem;
+    $fsLabel: 1.4rem;
+    //FontWeight
+    $weightBold: 700;
+
+    //SHADOW
+    $shadow1: 0 1px 4px hsla(0, 0%, 0%, 0.75);
+    $shadow2: 0 2px 4px hsla(350, 100%, 43%, 0.3);
+
+    //BORDER RADIUS
+    $radius4: 4px;
+    $radius8: 8px;
+    $radius16: 16px;
+    $radius24: 24px;
+    $radius36: 36px;
+
+    //TRANSITION
+    $transitionShort: 250ms ease;
+    $transitionLong: 500ms ease;
+
+
+    

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary META tags-->
+    <title>Portafolio Libreria de Películas</title>
+    <meta name="title" content="Kinova">
+    <meta name="description" content="Kinova is a popular movie app made by KevDev.">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/img/favicon.svg" type="image/svg+xml">
+    <!-- Google Font Link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS Link-->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- JavaScript Link-->
+    <script src="js/global.js" defer></script>
+    <script src="js/index.js" type="module" defer></script>
+</head>
+<body>
+    <!-- HEADER-->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img class="logo_img" src="img/logo-kinova-fondo-negro.png" alt="Kinova home">
+        </a>
+    
+        <section class="search_box" search_box>
+            <article class="search_wrapper" search_wrapper>
+                <input type="text" name="search" aria-label="search movies" placeholder="search any movies..." class="search_field" autocomplete="off" search_field>
+                <img class="leading_icon" src="img/search.png" alt="search">
+            </article>
+            <button class="search_btn" search_toggler>
+                <img src="img/close.png" alt="close search box">
+            </button>
+        </section>
+    
+        <div class="header_right">
+            <button class="search_btn" search_toggler>
+                <img src="img/search.png" alt="open search box">
+            </button>
+            <button class="menu_btn" menu_btn menu_toggler>
+                <img src="img/menu.png" alt="open menu" class="menu">
+                <img src="img/menu-close.png" alt="close menu" class="close">
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- SIDEBAR-->
+
+        <nav class="sidebar" sidebar></nav>
+        <article class="overlay" overlay menu_toggler></article>
+
+
+        <section class="container" page_content></section>
+    </main>
+
+</body>
+</html>

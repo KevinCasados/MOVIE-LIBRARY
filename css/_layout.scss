@@ -1,0 +1,680 @@
+// ESTILOS DEL HEADER
+
+.header {
+    position: fixed; // Cambiar de relative a fixed
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-block: 24px;
+    padding-inline: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    background-color: $background; // Asegúrate de que el fondo del header sea sólido
+    z-index: 5; // Asegúrate de que esté por encima del sidebar
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Opcional: Añade una sombra para diferenciar el header del contenido
+}
+
+.header .logo {
+    margin-inline-end: auto;    
+}
+
+.logo_img {
+    width: 140px;
+}
+
+.header_right {
+    display: flex;
+    align-items: center;
+    gap: 16px; // Ajusta el espacio entre los botones según sea necesario
+}
+
+.search_btn,
+.menu_btn {
+    padding: 12px;
+}
+
+.search_btn {
+    background-color: $bannerBackground;
+    border-radius: $radius8;
+}
+
+.search_btn img {
+    width: 24px;
+    opacity: 0.5;
+    transition: $transitionShort;
+}
+
+.search_btn:is(:hover, :focus-visible) img {
+    opacity: 1;
+}
+
+.menu_btn.active .menu,
+.menu_btn .close {
+    display: none;
+}
+
+.menu_btn .menu,
+.menu_btn.active .close {
+    display: block;
+}
+
+.menu,
+.close {
+    width: 24px;
+}
+
+.search_box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $background;
+    padding: 24px 16px;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+    display: none;
+}
+
+.search_box.active {
+    display: flex;
+}
+
+.search_wrapper {
+    position: relative;
+    flex-grow: 1;
+}
+
+.search_field {
+    background-color: $bannerBackground;
+    height: 48px;
+    line-height: 48px;
+    padding-inline: 44px 16px;
+    outline: none;
+    border-radius: $radius8;
+    transition: $transitionShort;
+
+    &::placeholder {
+        color: $onSurfaceVariant;
+    }
+
+    &:hover {
+        box-shadow: 0 0 0 2px $onSurfaceVariant;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px $onSurface;
+        padding-inline-start: 16px;
+    }
+}
+
+.search_wrapper .leading_icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    opacity: 0.5;
+    transition: $transitionShort;
+}
+
+.search_wrapper:focus-within .leading_icon {
+    opacity: 0;
+}
+
+.leading_icon {
+    width: 24px;
+    height: 24px;
+}
+
+.search_wrapper .leading_icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    opacity: 0.5;
+    transition: $transitionShort;
+}
+
+.search_wrapper:focus-within .leading_icon {
+    opacity: 0;
+}
+
+.leading_icon {
+    width: 24px;
+    height: 24px;
+}
+
+
+//SIDEBAR 
+.sidebar {
+    position: fixed; // Cambiar de absolute a fixed
+    background-color: $background;
+    top: 96px;
+    bottom: 0; // Asegura que ocupe toda la altura desde top hasta bottom
+    border-bottom: 0;
+    left: -340px;
+    max-width: 340px;
+    width: 100%;
+    border-block-start: 1px solid $bannerBackground;
+    overflow-y: hidden; // Oculta el scroll en el contenedor principal
+    z-index: 4;
+    visibility: hidden;
+    transition: $transitionLong;
+}
+
+.sidebar.active {
+    transform: translateX(340px);
+    visibility: visible;
+}
+
+.sidebar_inner {
+    display: grid;
+    gap: 20px;
+    padding-block: 36px;
+    height: calc(100% - 36px); // Asegura que el contenido interno tenga altura completa
+    overflow-y: auto; // Habilita el scroll solo en el contenido interno
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.sidebar:is(:hover, :focus-within)::-webkit-scrollbar-thumb {
+    background-color: $bannerBackground;
+}
+
+.sidebar::-webkit-scrollbar-button {
+    height: 16px;
+}
+
+.sidebar_list,
+.sidebar_footer {
+    padding-inline: 36px;
+}
+
+.sidebar_link {
+    color: $onSurfaceVariant;
+    transition: $transitionShort;
+
+    &:hover, 
+    :focus-visible {
+        color: $onBackground;
+    }
+}
+
+.sidebar_list {
+    display: grid;
+    grid-auto-flow: 8px;
+
+    .title {
+        margin-block-end: 8px;
+    }
+}
+
+.sidebar_footer {
+    border-block-start: 1px solid $bannerBackground;
+    padding-block-start: 28px;
+    margin-block-start: 16px;
+}
+
+.copyright {
+    color: $onSurfaceVariant;
+    margin-block-end: 20px;
+
+    .copyright_a {
+        display: inline-block;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 96px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: $background;
+    opacity: 0;
+    pointer-events: none;
+    transition: $transitionShort;
+    z-index: 3;
+}
+
+.overlay .active {
+    opacity: 0.5;
+    pointer-events: all;
+}
+
+.overlay .active {
+    opacity: 0.5;
+    pointer-events: all;
+}
+
+
+//HOME PAGE
+
+.container {
+    position: relative;
+    background-color: $surface;
+    color: $onSurface;
+    padding: 100px 20px 48px;
+    height: calc(100vh - 96px);
+    overflow-y: overlay;
+    z-index: 1;
+}
+
+//BANNER
+
+.banner {
+    position: relative;
+    height: 700px;
+    border-radius: $radius24;
+    overflow: hidden;
+}
+
+.banner_slider .slider_item {
+    position: absolute;
+    top: 0;
+    left: 120%;
+    width: 100%;
+    height: 100%;
+    background-color: $bannerBackground;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $transitionLong;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient($bannerOverlay);
+    }
+}
+
+.banner_slider .active {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.banner_content {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 206px;
+    z-index: 1;
+    color: $textColor;
+}
+
+.banner :is(.heading, .banner_text) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.banner .heading {
+    -webkit-line-clamp: 3;
+    margin-block-end: 16px;
+}
+
+.banner .genre {
+    margin-block: 12px;
+}
+
+.banner_text {
+    -webkit-line-clamp: 2;
+    margin-block-end: 24px;
+}
+
+.banner .btn {
+    background-color: $primary;
+
+    &:hover, 
+    :focus-visible {
+        box-shadow: $shadow2;
+    }
+}
+
+.slider_control {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 0;
+    border-radius: $radius16 0 0 $radius16;
+    user-select: none;
+    padding: 4px 0 4px 4px; 
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.control_inner {
+    display: flex;
+    gap: 12px;
+
+    &::after {
+        content: "";
+        min-width: 12px;
+    }
+}
+
+.slider_control .slider_item {
+    width: 100px;
+    border-radius: $radius8;
+    flex-shrink: 0;
+    filter: brightness(0.4);
+}
+
+.slider_control .active {
+    filter: brightness(1);
+    box-shadow: $shadow1;
+}
+
+//MOVIE LIST
+.movie_list {
+    padding-block-start: 32px;
+}
+
+.movie_card {
+    position: relative;
+    min-width: 200px;
+    margin: 0 8px; 
+}
+
+.movie_card .card_banner {
+    width: 200px;
+}
+
+.movie_card .title {
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-block: 8px 4px;
+}
+
+.movie_card .meta_list {
+    display: flex;
+}
+
+
+//HTML MOVIE DETAIL PAGE
+
+//MOVIE DETAIL PAGE
+
+.backdrop_image {
+    background-image: url('/img/slider-banner.jpg');
+    position: absolute;
+    top: 104px;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(0deg, hsla(250, 13%, 11%, 1), hsla(250, 13%, 11%, 0.6));
+    }
+}
+
+.movie_detail .movie_poster {
+    max-width: 300px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.movie_detail .heading {
+    margin-block: 24px 12px;
+}
+
+.movie_detail :is(.meta_list, .genre) {
+    color: $textColor;
+}
+
+.movie_detail .genre {
+    margin-block: 12px 16px;
+}
+
+.detail_list {
+    margin-block: 24px 32px;
+}
+
+.movie_detail .list_item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-block-end: 12px;
+}
+
+.movie_detail .list_name {
+    color: $textColor;
+    min-width: 112px;
+}
+
+.meta_item_star {
+    width: 20px;
+    height: 20px;
+}
+
+// HTML MOVIE LIST PAGE
+
+// MOVIE LIST PAGE
+
+.genre_list .title_wrapper {
+    margin-block-end: 56px;
+}
+
+.grid_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    column-gap: 16px;
+    row-gap: 20px;
+}
+
+:is(.genre_list, .search_modal) :is(.movie_card, .card_banner) {
+    width: 100%;
+}
+
+// SEARCH MODAL
+
+.search_modal {
+    position: fixed;
+    top: 96px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: $surface;
+    padding: 50px 24px;
+    overflow-y: overlay;
+    z-index: 4;
+    display: none;
+}
+
+.search_modal.active {
+    display: block;
+}
+
+.search_modal .label {
+    color: $primaryVariant;
+    font-weight: $weightBold;
+    margin-block-end: 8px;
+}
+
+// MEDIA QUERIES
+
+    // RESPONSIVE FOR LARGER THAN 575px screen
+
+    @media (min-width: 575px) {
+
+        //HOME PAGE
+
+        .banner_content {
+            right: auto;
+            max-width: 500px;
+
+        }
+
+        .slider_control {
+            left: calc(100% - 400px);
+        }
+
+        //DETAIL PAGE
+
+        .detail_content {   
+            max-width: 750px;
+        }
+
+    }
+
+
+
+    
+    // RESPONSIVE FOR LARGER THAN 768px screen
+
+    @media (min-width: 768px) {
+
+        //CUSTOM PROPERTY
+
+        :root {
+
+            //gradient color 
+            $bannerOverlay: 90deg, hsl(220, 17%, 7%) 0%, hsla(220, 17%, 7%, 0) 100%;
+
+            //FONT SIZE 
+            $fsHeading: 5.4rem;
+
+        }
+
+        // HOME PAGE
+        .container {
+            padding-inline: 24px;
+        }
+
+        .slider_list {
+            margin-inline: -24px;
+        }
+
+        .search_btn {
+            display: none;
+        }
+
+        .search_box {
+            all: unset;
+            display: block;
+            width: 360px;
+        }
+
+        .banner {
+            height: 500px;
+        }
+
+        .banner_content {
+            bottom: 50%;
+            transform: translateY(50%);
+            left: 50px;
+        }
+
+        // MOVIE DETAIL PAGE
+
+        .movie_detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .movie_detail .detail_box {
+            flex-grow: 1;
+        }
+
+        .movie_detail .movie_poster {
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+        }
+
+        .movie_detail .slider_list {
+            margin-inline-start: 0;
+            border-radius: $radius16 0 0 $radius16;
+        }
+
+        .movie_detail .slider_inner::before {
+            display: none;
+        }
+
+    }
+
+
+
+    
+    // RESPONSIVE FOR LARGER THAN 1200px screen
+
+    @media (min-width: 1200px) {
+
+        // HOMEPAGE
+        .header {
+            padding: 28px 56px;
+        }
+
+        .logo_img {
+            width: 160px;
+        }
+        // NOT SURE 
+        .menu_btn,
+        .overlay {
+            display: none;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+        }
+
+        .sidebar {
+            position: static;
+            visibility: visible;
+            border-block-start: 0;
+            height: calc(100vh - 104px);
+        }
+
+        .sidebar.active {
+            transform: none;
+        }
+
+        .sidebar_list,
+        .sidebar_footer {
+            padding-inline: 56px;
+        }
+
+        .sidebar_inner {
+            margin-top: 105px;
+        }
+
+        .container {
+            height: calc(100vh - 104px);
+            border-top-left-radius: $radius36;
+        }
+
+        .banner_content {
+            left: 100px;
+        }
+
+        .search_modal {
+            top: 104px;
+            padding: 60px;
+        }
+
+        // DETAIL PAGE
+
+        .backdrop_image {
+            border-top-left-radius: $radius36;
+        }
+    }
