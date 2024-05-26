@@ -18,6 +18,7 @@ addEventOnElements(searchTogglers, "click", function () {
  */
 window.getMovieDetail = function (movieId) {
     window.localStorage.setItem("movieId", String(movieId));
+    window.location.href = 'detail.html';
 }
 
 const getMovieList = function(urlParam, genreName) {

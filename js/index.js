@@ -2,7 +2,7 @@
 
 // IMPORT ALL COMPONENTS AND FUNCTIONS
 import { sidebar } from "./sidebar.js";
-import { api_key, imageBaseURL, fetchDataFromServer } from "./api.js";
+import { api_key, imageBaseURL, axiosDataFromServer } from "./api.js";
 import { createMovieCard } from "./movie-card.js";
 import { search } from "./search.js";
 
@@ -29,7 +29,7 @@ const homePageSections = [
 ];
 
 /** 
- * fetch all genres eg: [ { "id": "123", "name": "Action" } ]
+ * AXIOS all genres eg: [ { "id": "123", "name": "Action" } ]
  * then change genre format eg: { 123: "Action" }
  */ 
 const genreList = {
@@ -43,12 +43,12 @@ const genreList = {
     }
 };
 
-fetchDataFromServer(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`, function ({ genres }) { 
+axiosDataFromServer(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`, function ({ genres }) { 
     for (const { id, name} of genres) {
         genreList[id] = name;
     }
 
-    fetchDataFromServer(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&page=1`, heroBanner);
+    axiosDataFromServer(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&page=1`, heroBanner);
 });
 
 const heroBanner = function({ results: movieList }) {
@@ -116,9 +116,9 @@ const heroBanner = function({ results: movieList }) {
 
     addHeroSlide();
 
-    // Fetch data from home page sections (top rated, upcoming, trending)
+    // AXIOS data from home page sections (top rated, upcoming, trending)
     for (const { title, path } of homePageSections) {
-        fetchDataFromServer(`https://api.themoviedb.org/3${path}?api_key=${api_key}&page=1`, createMovieList, title);
+        axiosDataFromServer(`https://api.themoviedb.org/3${path}?api_key=${api_key}&page=1`, createMovieList, title);
     }
 }
 
@@ -164,7 +164,7 @@ const createMovieList = function({ results: movieList }, title) {
     `;
 
     for (const movie of movieList) {
-        const movieCard = createMovieCard(movie); // Called from movie-card.js
+        const movieCard = createMovieCard(movie); // Call from movie-card.js
         movieListElem.querySelector(".slider_inner").appendChild(movieCard);
     }
 

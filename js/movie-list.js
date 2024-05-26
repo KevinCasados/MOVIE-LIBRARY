@@ -1,6 +1,6 @@
 'use strict';
 
-import { api_key, fetchDataFromServer } from "./api.js";
+import { api_key, axiosDataFromServer } from "./api.js";
 import { sidebar } from "./sidebar.js";
 import { createMovieCard } from "./movie-card.js";
 import { search } from "./search.js";
@@ -16,9 +16,9 @@ sidebar();
 let currentPage = 1;
 let totalPages = 0;
 
-const fetchURL = (page) => `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&include_adult=false&page=${page}&${urlParam}`;
+const axiosURL = (page) => `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&include_adult=false&page=${page}&${urlParam}`;
 
-fetchDataFromServer(fetchURL(currentPage), function ({ results: movieList, total_pages }) {
+axiosDataFromServer(axiosURL(currentPage), function ({ results: movieList, total_pages }) {
     totalPages = total_pages;
     document.title = `Películas ${genreName} - Kinova`;
 
@@ -28,14 +28,14 @@ fetchDataFromServer(fetchURL(currentPage), function ({ results: movieList, total
 
     movieListElem.innerHTML = `
         <article class="title_wrapper">
-            <h1 class="heading">Todas las películas de ${genreName}</h1>
+            <h1 class="heading">Todas las películas - ${genreName}</h1>
         </article>
         <article class="grid_list"></article>
         <button class="btn load_more" load-more>Cargar más</button>
     `;
 
     /**
-     * add movie card based on fetched item
+     * add movie card based on AXIOS item
      */
     for (const movie of movieList) {
         const movieCard = createMovieCard(movie);
@@ -47,7 +47,7 @@ fetchDataFromServer(fetchURL(currentPage), function ({ results: movieList, total
     /**
      * LOAD MORE BUTTON FUNCTIONALITY
      */
-    document.querySelector("[load-more]").addEventListener("click", function () {
+    document.querySelector("[load-more]").addEventListener("click", async function () {
         if (currentPage >= totalPages) {
             this.style.display = "none"; // this == loading btn
             return;
@@ -56,7 +56,7 @@ fetchDataFromServer(fetchURL(currentPage), function ({ results: movieList, total
         currentPage++;
         this.classList.add("loading"); // this == loading btn
 
-        fetchDataFromServer(fetchURL(currentPage), ({ results: movieList }) => {
+        await axiosDataFromServer(axiosURL(currentPage), ({ results: movieList }) => {
             this.classList.remove("loading"); // this == loading btn
 
             for (const movie of movieList) {
@@ -66,6 +66,5 @@ fetchDataFromServer(fetchURL(currentPage), function ({ results: movieList, total
         });
     });
 });
-
 
 search();
